@@ -114,8 +114,8 @@ cellFour.innerText = `Difficulty Level: ${mountainObj.effort }`;
    mountainTb.rows[0].cells[2].innerHTML = ""
 
    mountainTb.rows[0].cells[3].innerHTML = ""
-}
+};
 
 
 
-}
+};
