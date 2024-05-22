@@ -14,6 +14,7 @@
 
 const mountainDropDown = document.querySelector("#mountainsList");
 const mountainTb = document.querySelector("#mountainTb");
+const mountainImage = document.querySelector("#mountainImage")
 
 let trackChanges = 0;
 
@@ -34,14 +35,15 @@ function populateDropDown() {
   for (let i = 0; i < mountainsArray.length; i++) {
     let optionElement = document.createElement("option");
     optionElement.value = mountainsArray[i].name;
-    optionElement.innerHTML = mountainsArray[i].name;
+    optionElement.innerText = mountainsArray[i].name;
 
     mountainDropDown.appendChild(optionElement);
   }
 }
 
 function displayMountainInfo() {
-  mountainTb.innerHTML = "";
+  mountainTb.innerText = "";
+  mountainImage.src = "";
   let selectedMountain = mountainDropDown.value;
 
   mountainsArray.forEach((mountainObj) => {
@@ -60,13 +62,21 @@ function displayMountainInfo() {
       let cellFour = row.insertCell(3);
       cellFour.innerText = `Difficulty Level: ${mountainObj.effort}`;
 
-      let cellFive = row.insertCell(4);
-      let image = document.createElement("img");
-      image.src = "images/"+ mountainObj.img;
-      image.alt = "";
-      image.height = 600;
-      image.width = 1000;
-      cellFive.appendChild(image);
+      // let cellFive = row.insertCell(4);
+      // let image = document.createElement("img");
+      
+      // cellFive.appendChild(image);
+
+      showImage(mountainObj);
     }
   });
 }
+
+function showImage(mountainObj){
+
+mountainImage.src = "images/"+ mountainObj.img;
+      image.alt = "";
+      image.height = '1000' ;
+      image.width = '1200';
+}
+
