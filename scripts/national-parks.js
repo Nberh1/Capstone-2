@@ -41,11 +41,11 @@ window.onload = function () {
 
     let cellFive = row.insertCell(4);
     cellFive.innerText = park.ZipCode;
-
-    let cellSix = row.insertCell(5);
-    cellSix.innerText = park.Phone;
-
-    let cellSeven = row.insertCell(6);
+ 
+   let cellSix = row.insertCell(5);
+   cellSix.innerText = park.Phone;
+    
+   let cellSeven = row.insertCell(6);
     cellSeven.innerText = park.Fax;
 
     let cellEight = row.insertCell(7);
