@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <link
+    <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"
-    /> 
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,7 +18,6 @@
   <body>
     <nav>
       <div class="container">
-        <h1>Mountain Parks</h1>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="national-parks.html">National Parks</a></li>
@@ -30,10 +29,26 @@
     <main class="mt-5">
       <div class="container mb-5">
         <h1>National Parks</h1>
-        <h5>Select...</h5>
-        <select id="statesList" class="form-select" aria-label="Select state">
-          <option value="">Select state...</option>
-        </select>
+        <div>
+          <input type="radio" id="stateRadio" name="filter" checked />
+          <label for="stateRadio">Filter by State</label>
+          <input type="radio" id="typeRadio" name="filter" />
+          <label for="typeRadio">Filter by Park Type</label>
+        </div>
+        <div id="stateDropdown">
+          <select id="parkList" class="form-select" aria-label="Select state">
+            <option value="">Select state...</option>
+          </select>
+        </div>
+        <div id="typeDropdown">
+          <select
+            id="parkTypeList"
+            class="form-select"
+            aria-label="Select park type"
+          >
+            <option value="">Select park type...</option>
+          </select>
+        </div>
         <table class="table table-light table-striped">
           <thead>
             <tr>
@@ -43,39 +58,17 @@
               <th>State</th>
               <th>Zip Code</th>
               <th>Phone</th>
+              <th>Fax</th>
               <th>Website</th>
             </tr>
           </thead>
-          <tbody id="stateTb"></tbody>
-        </table>
-        <h5>Search by Park Type</h5>
-        <select
-          id="parkTypesList"
-          class="form-select"
-          aria-label="Select park type"
-        >
-          <option value="">Select park type...</option>
-        </select>
-        <table class="table table-light table-striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Zip Code</th>
-              <th>Phone</th>
-              <th>Website</th>
-            </tr>
-          </thead>
-          <tbody id="parkTb"></tbody>
+          <tbody id="nationalParkTB"></tbody>
         </table>
       </div>
     </main>
     <script src="scripts/locationData.js"></script>
     <script src="scripts/parkTypeData.js"></script>
     <script src="scripts/nationalParkData.js"></script>
-
     <script src="scripts/national-parks.js"></script>
   </body>
 </html>

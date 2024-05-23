@@ -1,53 +1,104 @@
 "use strict";
-const statesList = document.querySelector("#statesList");
-const stateTb = document.querySelector("#stateTb");
-const parkTb = document.querySelector("#parkTb");
-const parkTypesList = document.querySelector("#parkTypesList");
+window.onload = function () {
+  const nationalParkTB = document.querySelector("#nationalParkTB");
+  const parkList = document.querySelector("#parkList");
+  const parkTypeList = document.querySelector("#parkTypeList");
+  const stateRadio = document.querySelector("#stateRadio");
+  const typeRadio = document.querySelector("#typeRadio");
 
-function init() { 
-  dropDown();
-  displayData()
-  
- };
-function displayData() {
-let locations = nationalParksArray;
-for (let location of locations) {
-  let row = stateTb.insertRow();
-  let cellOne = row.insertCell(0);
-  cellOne.innerText = location.LocationName;
-  let celltwo = row.insertCell(1);
-  celltwo.innerText = location.Address;
-  let cellthree = row.insertCell(2);
-  cellthree.innerText = location.City;
-  let cellFour = row.insertCell(3);
-  cellFour.innerText = location.State;
-  let cellFive = row.insertCell(4);
-  cellFive.innerText = location.ZipCode;
-  let cellSix = row.insertCell(5);
-  cellSix.innerText = location.Phone;
-  let cellSeven = row.insertCell(6);
-  cellSeven.innerText = location.Visit;
-}
-}
-
-function dropDown() {
-  let states = locationsArray;
-  for(let state of states) {
-  let optionElement = document.createElement("option");
-  optionElement.value = state;
-  optionElement.innerText = state;
- statesList.appendChild(optionElement);
-    
+  function buildParkOption() {
+    for (const location of locationsArray) {
+      const parkOption = document.createElement("option");
+      parkOption.value = location;
+      parkOption.innerText = location;
+      parkList.appendChild(parkOption);
+    }
   }
-}
 
+  function buildParkTypeOption() {
+    for (const type of parkTypesArray) {
+      const parkTypeOption = document.createElement("option");
+      parkTypeOption.value = type;
+      parkTypeOption.innerText = type;
+      parkTypeList.appendChild(parkTypeOption);
+    }
+  }
 
+  function buildTableRow(park) {
+    let row = nationalParkTB.insertRow();
 
+    let cellOne = row.insertCell(0);
+    cellOne.innerText = park.LocationName;
 
+    let cellTwo = row.insertCell(1);
+    cellTwo.innerText = park.Address;
 
+    let cellThree = row.insertCell(2);
+    cellThree.innerText = park.City;
 
+    let cellFour = row.insertCell(3);
+    cellFour.innerText = park.State;
 
-  window.onload = init;
+    let cellFive = row.insertCell(4);
+    cellFive.innerText = park.ZipCode;
 
+    let cellSix = row.insertCell(5);
+    cellSix.innerText = park.Phone;
 
+    let cellSeven = row.insertCell(6);
+    cellSeven.innerText = park.Fax;
+
+    let cellEight = row.insertCell(7);
+    cellEight.innerText = park.Visit;
+  }
+
+  function filterParksByState() {
+   
+    while (nationalParkTB.rows.length > 0) {
+      nationalParkTB.deleteRow(0);
+    }
+   
+    if (parkList.value) {
+      for (const park of nationalParksArray) {
+        if (park.State === parkList.value) {
+          buildTableRow(park);
+        }
+      }
+    }
+  }
+
+  function filterParksByType() {
+    
+    while (nationalParkTB.rows.length > 0) {
+      nationalParkTB.deleteRow(0);
+    }
+    
+    if (parkTypeList.value) {
+      for (const park of nationalParksArray) {
+        if (park.LocationName.includes(parkTypeList.value)) {
+          buildTableRow(park);
+        }
+      }
+    }
+  }
+
+  function toggleDropdowns() {
+    if (stateRadio.checked) {
+      parkList.style.display = "block";
+      parkTypeList.style.display = "none";
+    } else if (typeRadio.checked) {
+      parkList.style.display = "none";
+      parkTypeList.style.display = "block";
+    }
+  }
+
+  parkList.onchange = filterParksByState;
+  parkTypeList.onchange = filterParksByType;
+  stateRadio.onclick = toggleDropdowns;
+  typeRadio.onclick = toggleDropdowns;
+
+  buildParkOption();
+  buildParkTypeOption();
+  toggleDropdowns(); // Initialize the display based on the default selected radio button
+};
 

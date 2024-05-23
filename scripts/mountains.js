@@ -62,10 +62,10 @@ function displayMountainInfo() {
       let cellFour = row.insertCell(3);
       cellFour.innerText = `Difficulty Level: ${mountainObj.effort}`;
 
-      // let cellFive = row.insertCell(4);
-      // let image = document.createElement("img");
+      let cellFive = row.insertCell(4);
+      let image = document.createElement("img");
       
-      // cellFive.appendChild(image);
+      cellFive.appendChild(image);
 
       showImage(mountainObj);
     }
