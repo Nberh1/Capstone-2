@@ -41,15 +41,27 @@ window.onload = function () {
 
     let cellFive = row.insertCell(4);
     cellFive.innerText = park.ZipCode;
- 
-   let cellSix = row.insertCell(5);
-   cellSix.innerText = park.Phone;
-    
-   let cellSeven = row.insertCell(6);
+
+    let cellSix = row.insertCell(5);
+    if (park.Phone === 0) {
+      cellSix.innerText = "";
+    } else {
+      cellSix.innerText = park.Phone;
+    }
+
+    let cellSeven = row.insertCell(6);
     cellSeven.innerText = park.Fax;
 
     let cellEight = row.insertCell(7);
-    cellEight.innerText = park.Visit;
+    if (park.Visit) {
+      const link = document.createElement("a");
+      link.href = park.Visit;
+      link.target = "_blank";
+      link.textContent = "Visit Website";
+      cellEight.appendChild(link);
+    } else {
+      cellEight.innerText = "";
+    }
   }
 
   function filterParksByState() {
@@ -99,6 +111,6 @@ window.onload = function () {
 
   buildParkOption();
   buildParkTypeOption();
-  toggleDropdowns(); // Initialize the display based on the default selected radio button
+  toggleDropdowns(); 
 };
 

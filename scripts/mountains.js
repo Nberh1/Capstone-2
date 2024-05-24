@@ -3,12 +3,6 @@
 // this funciton can come in handy later to pass in a value
 // and load all mountains thT MATCH THE VALue (param)
 
-// function loadMountains(params) {
-//   for (const mountain of mountainsArray) {
-//     console.log(mountain);
-//   }
-
-// }
 
 // loadMountains();
 
